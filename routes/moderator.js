@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Entry = require('../models/entry');
-console.log('started entries');
+// console.log('started entries');
 
 
 // entries
 router.get('/', async function (req, res, next) {
     let entries = await Entry.mostRecent();
-    console.log(entries);
-    res.render('entries/index', { entries });
+    // console.log(entries);
+    res.render('login');
 });
 
 router.post('/', async function (req, res, next) {

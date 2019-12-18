@@ -1,8 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', function (req, res, next) {
-  res.redirect('/entries');
+
+router.route('/')
+.get((req, res, next) => {
+  res.render('entries/index');
 });
+
+
+
+
+
+
+
+
 
 module.exports = router;
