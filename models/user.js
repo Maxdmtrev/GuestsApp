@@ -10,4 +10,6 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.finder = async function() {
     return this.find().sort('first_name');
 }
-module.exports = mongoose.model('Guests', userSchema);
+
+const User = mongoose.model('Guests', userSchema);
+module.exports = User;

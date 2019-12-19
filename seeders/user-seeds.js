@@ -12,7 +12,7 @@ const User = require('../models/user');
 const Admin = require('../models/admin');
 
 // Read and save database Users, and add mongo DB
-async function seedDB(path) {
+async function userSeedDB(path) {
   const data = fs.readFileSync(path,'utf8').split('\n');
   const tempData = data
       .map((el) => el.split(','));
@@ -21,6 +21,7 @@ async function seedDB(path) {
     const user = new User( {
       first_name: tempData[i][0],
       last_name: tempData[i][1],
+      date: moment(tempData[i][2]).format("MMM Do YY"),
       status: false
     });
     console.log(user);
@@ -30,7 +31,7 @@ async function seedDB(path) {
 }
 
 // Read admin.txt and save mongoDB
-async function seedDB(path) {
+async function adminSeedDB(path) {
   const data = fs.readFileSync(path,'utf8').split('\n');
   const tempData = data
       .map((el) => el.split(','));
@@ -65,11 +66,13 @@ async function userDB() {
 // Start seed DB -------------
 
 // ---- Create admin DB with admin.txt
-seedDB(adminList);
+// seedDB(adminList);
 
 // ---- Create admin DB with admin.txt
-seedDB(userList);
+userSeedDB(userList);
+const UserSeed = userSeedDB(userList)
+module.exports = UserSeed;
 
 // ---- Create user DB with faker.npm
-userDB();
+// userDB();
 
