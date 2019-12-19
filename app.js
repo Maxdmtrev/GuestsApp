@@ -8,9 +8,8 @@ const logger = require('morgan');
 const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index');
-
 const moderatorRouter = require('./routes/moderator');
-
+const guestRouter = require('./routes/moderator')
 
 
 const app = express();
@@ -58,7 +57,6 @@ app.use(methodOverride(function (req, res) {
 }));
 
 app.use('/', indexRouter);
-
 app.use('/moderator', moderatorRouter);
 
 
