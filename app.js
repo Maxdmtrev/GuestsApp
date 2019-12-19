@@ -1,5 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -17,6 +19,21 @@ const app = express();
 // Подключаем mongoose.
 const mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/guest', { useNewUrlParser: true });
+
+const fileStoreOptions = {};
+app.use(cookieParser());
+app.use(
+  session({
+    store: new FileStore(fileStoreOptions),
+    key: "user_sid",
+    secret: "anything here",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000
+    }
+  })
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

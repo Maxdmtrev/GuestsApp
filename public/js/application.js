@@ -11,6 +11,12 @@ document.forms[0].addEventListener('submit', async (event) => {
       password: password
     })
   });
-  const result = await response.json()
-  console.log(result)
+  const result= await response.json()
+
+  if(result.admin === true)
+  {window.location='http://localhost:3000/moderator/admin'};
+  if (result.admin === false){
+    window.location='http://localhost:3000/moderator'};
+  if(result.status === false) {
+    alert("Неправильный Логин")};
 });
