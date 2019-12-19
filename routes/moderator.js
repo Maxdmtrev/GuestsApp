@@ -1,19 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
+const Admin = require('../models/user');
 // console.log('started entries');
 
 
 
-router.get('/', async function (req, res, next) {
+router.get('/login', async function (req, res, next) {
     // let entries = await User.mostRecent();
     // // console.log(entries);
     res.render('moderator/login');
 });
 
-router.post('/', async function (req, res, next) {
-    const newEntry = new Entry({ title: req.body.title, body: req.body.body });
-    res.redirect(`/entries/${newEntry.id}`);
+router.post('/login',async (req, res) => {
+  const { login, password } = req.body;
+
+  const moderator = await Admin.findOne({ login });
+
+  if (moderator && (moderator.password === password)) {
+    //req.session.user = user;
+    if (moderator.rules){
+      res.json({status:true})
+    } else{
+      res.json({status:false})
+    }
+  } else {
+    console.log('tut')
+   // res.redirect('/moderator/login');
+  }
 });
 
 //new entries
