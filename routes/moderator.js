@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Admin = require('../models/user');
+const Admin = require('../models/admin');
 // console.log('started entries');
 
 
@@ -12,20 +12,19 @@ router.get('/login', async function (req, res, next) {
 });
 
 router.post('/login',async (req, res) => {
-  const { login, password } = req.body;
-
-  const moderator = await Admin.findOne({ login });
+  const { username, password } = req.body;
+  const moderator = await Admin.findOne({login:username});
 
   if (moderator && (moderator.password === password)) {
     //req.session.user = user;
     if (moderator.rules){
-      res.json({status:true})
+      res.json({admin:true})
     } else{
-      res.json({status:false})
+      res.json({admin:false})
     }
   } else {
-    console.log('tut')
-   // res.redirect('/moderator/login');
+
+   res.json({status:false})
   }
 });
 
