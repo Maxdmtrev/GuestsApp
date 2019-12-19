@@ -6,12 +6,12 @@ const faker = require('faker');
 mongoose.connect('mongodb://localhost/guest', { useNewUrlParser: true });
 const userList = 'users.txt';
 const adminList = 'admin.txt';
-const fileWrite = './users-copy.csv';
+// const fileWrite = './users-copy.csv';
 
 const User = require('../models/user');
 const Admin = require('../models/admin');
 
-// Read and save database users === complete
+// Read and save database Users, and add mongo DB
 async function seedDB(path) {
   const data = fs.readFileSync(path,'utf8').split('\n');
   const tempData = data
@@ -29,7 +29,7 @@ async function seedDB(path) {
   mongoose.connection.close();
 }
 
-// Read admin.txt base
+// Read admin.txt and save mongoDB
 async function seedDB(path) {
   const data = fs.readFileSync(path,'utf8').split('\n');
   const tempData = data
@@ -47,23 +47,8 @@ async function seedDB(path) {
   mongoose.connection.close();
 }
 
-// Create Users with faker.npm
+// Create Users with faker.npm and add mongo DB
 async function userDB() {
-  for (let i = 0; i < 20; i++) {
-    let user = new User({
-      first_name: faker.name.firstName(),
-      last_name: faker.name.lastName(),
-      date: moment(faker.date.past()).format("MMM Do YY"),
-      status: false
-    });
-    console.log(user);
-    await user.save();
-  }
-  mongoose.connection.close();
-}
-
-// Create Users with faker.npm
-async function moderatorDB() {
   for (let i = 0; i < 20; i++) {
     let user = new User({
       first_name: faker.name.firstName(),
@@ -82,29 +67,9 @@ async function moderatorDB() {
 // ---- Create admin DB with admin.txt
 seedDB(adminList);
 
+// ---- Create admin DB with admin.txt
+seedDB(userList);
+
 // ---- Create user DB with faker.npm
-// userDB();
+userDB();
 
-
-
-
-// const userSeedDB = seedDB(userList);
-// const userCreateDB = userDB();
-
-// // Find user in DB
-// async function findUser(param) {
-//     const find = await FindOne({}, {first_name: param});
-//     console.log(find);
-//     mongoose.connection.close();
-// };
-
-
-
-// async function userWrite(filename, people) {
-//   const content = people.reduce((acc, elem) => `${acc} ${Object.values(elem)}\n`, '');
-//   await fs.writeFileSync(filename, content);
-// }
-//
-// userWrite(fileWrite, UserPars.userCreateDB);
-
-// module.exports = { userCreateDB, userSeedDB };
