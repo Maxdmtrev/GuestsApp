@@ -5,9 +5,11 @@ const moment = require('moment');
 const faker = require('faker');
 mongoose.connect('mongodb://localhost/guest', { useNewUrlParser: true });
 const userList = 'users.txt';
+const adminList = 'admin.txt';
 const fileWrite = './users-copy.csv';
 
 const User = require('../models/user');
+const Admin = require('../models/admin');
 
 // Read and save database users === complete
 async function seedDB(path) {
@@ -20,6 +22,24 @@ async function seedDB(path) {
       first_name: tempData[i][0],
       last_name: tempData[i][1],
       status: false
+    });
+    console.log(user);
+    await user.save();
+  }
+  mongoose.connection.close();
+}
+
+// Read admin.txt base
+async function seedDB(path) {
+  const data = fs.readFileSync(path,'utf8').split('\n');
+  const tempData = data
+      .map((el) => el.split(','));
+  console.log(tempData);
+  for (let i = 0; i < tempData.length; i ++) {
+    const user = new Admin( {
+      login: tempData[i][0],
+      password: tempData[i][1],
+      rules: tempData[i][2]
     });
     console.log(user);
     await user.save();
@@ -42,10 +62,32 @@ async function userDB() {
   mongoose.connection.close();
 }
 
+// Create Users with faker.npm
+async function moderatorDB() {
+  for (let i = 0; i < 20; i++) {
+    let user = new User({
+      first_name: faker.name.firstName(),
+      last_name: faker.name.lastName(),
+      date: moment(faker.date.past()).format("MMM Do YY"),
+      status: false
+    });
+    console.log(user);
+    await user.save();
+  }
+  mongoose.connection.close();
+}
+
 // Start seed DB -------------
 
-// seedDB(userList);
-userDB();
+// ---- Create admin DB with admin.txt
+seedDB(adminList);
+
+// ---- Create user DB with faker.npm
+// userDB();
+
+
+
+
 // const userSeedDB = seedDB(userList);
 // const userCreateDB = userDB();
 
