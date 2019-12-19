@@ -66,12 +66,12 @@ async function userDB() {
 // Start seed DB -------------
 
 // ---- Create admin DB with admin.txt
-// seedDB(adminList);
+adminSeedDB(adminList);
 
 // ---- Create admin DB with admin.txt
-userSeedDB(userList);
-const UserSeed = userSeedDB(userList)
-module.exports = UserSeed;
+// userSeedDB(userList);
+// const UserSeed = userSeedDB(userList)
+// module.exports = UserSeed;
 
 // ---- Create user DB with faker.npm
 // userDB();
