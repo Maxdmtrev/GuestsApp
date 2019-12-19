@@ -81,6 +81,12 @@ input[type=text], input[type=password], textarea {
     background-color: #6ec7a5;
   }
 
+  .block-button-moderator {
+    border: solid 1px white;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
 .c-dk-green {
   color: #05724f;
 }

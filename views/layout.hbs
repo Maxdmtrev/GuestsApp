@@ -5,7 +5,7 @@
       <link rel="stylesheet" href="/stylesheets/application.css">
 
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="/js/application.js" defer></script>
+
 
 
       <title>Guests App</title>
@@ -16,8 +16,8 @@
               <nav class="clearfix mar-b-1">
                   <ul class="no-bullets no-margin no-padding right">
                       {{#if moderator}}
-                          <li class="pipe-separate t-light-green left"><a href="/moderator/login">{{moderator.login}}</a></li>
-
+                          <li class="pipe-separate t-light-green left"><a href="/moderator">{{moderator.login}}</a></li>
+                          <li class="pipe-separate t-light-green left"><a href="/moderator/logout">logOut</a></li>
                       {{else}}
                           <li class="pipe-separate t-light-green left"><a href="/moderator/login">login</a></li>
                           <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
