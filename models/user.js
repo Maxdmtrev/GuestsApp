@@ -1,15 +1,12 @@
 const mongoose = require('mongoose');
-
-
-const entrySchema = new mongoose.Schema({
-    title: String,
-    body: String,
-    createdAt: String,
-    updatedAt: Date
+// Model for User base
+const userSchema = new mongoose.Schema({
+    first_name: String,
+    last_name: String,
+    date: String,
+    status: false
 });
-
-entrySchema.statics.mostRecent = async function() {
-    return this.find().sort('createdAt').limit(5).exec();
-}
-
-module.exports = mongoose.model('Entry', entrySchema);
+// userSchema.statics.finder = async function() {
+//     return this.find().sort('date');
+// }
+module.exports = mongoose.model('Users', userSchema);

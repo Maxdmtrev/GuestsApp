@@ -6,11 +6,10 @@ const logger = require('morgan');
 const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index');
-<<<<<<< HEAD
+
 const moderatorRouter = require('./routes/moderator');
-=======
-const entriesRouter = require('./routes/moderator');
->>>>>>> 307e92e5ec4869fc89a332b55cf945b44ba87d7f
+
+
 
 const app = express();
 
@@ -42,11 +41,11 @@ app.use(methodOverride(function (req, res) {
 }));
 
 app.use('/', indexRouter);
-<<<<<<< HEAD
+
 app.use('/moderator', moderatorRouter);
-=======
-app.use('/moderator', entriesRouter);
->>>>>>> 307e92e5ec4869fc89a332b55cf945b44ba87d7f
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
