@@ -1,9 +1,9 @@
-<div class="container row">
-    <h1>Hi, {{moderator.login}}! Welcome to your Guest List!!!</h1>
+<div class="container-row">
+    <h1>Hi, {{moderator.login}} ! Welcome to your Guest List !!!</h1>
 </div>
-
-<a href="/moderator/new" class="block-button-moderator">Add Guest</a>
-
+<div class="block-button-add-guest">
+    <a href="/moderator/new" class="block-button-moderator">Add Guest</a>
+</div>
 <main role="main">
     <ul class="entries">
         {{#each guest}}

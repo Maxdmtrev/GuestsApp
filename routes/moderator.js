@@ -57,7 +57,7 @@ router.get("/logout", async (req, res, next) => {
   if (req.session.moderator) {
     try {
       await req.session.destroy();
-      //res.clearCookie("user_sid");
+      res.clearCookie("user_sid");
       res.redirect("/");
     } catch (error) {
       next(error);
