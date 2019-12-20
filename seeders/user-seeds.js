@@ -70,7 +70,7 @@ async function userDB() {
 adminSeedDB(adminList);
 
 // ---- Create admin DB with admin.txt
-// userSeedDB(userList);
+//userSeedDB(userList);
 // const UserSeed = userSeedDB(userList)
 // module.exports = UserSeed;
 
