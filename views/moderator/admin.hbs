@@ -1,0 +1,29 @@
+<div class="container row">
+    <h1>Hi, {{moderator.login}}! Welcome to your Control!!!</h1>
+</div>
+
+<a href="/moderator/admin/new" class="block-button-moderator">Add Guest</a>
+
+<main role="main">
+    <ul class="entries">
+        {{#each guest}}
+            <li class="entry"  id="{{this.id}}">
+
+                <span class="singer">{{this.first_name}}</span>
+                <span class="song-title">{{this.last_name}}</span>
+                {{#if this.status}}
+                <span class="singer">Come</span><br>
+                {{else}}
+                    <span class="singer">No come</span><br>
+
+                {{/if}}
+                <ul class="entry-links">
+                    <span class="entry-link"><a href="entries/{{this.id}}">details</a></span>
+                    <span class="entry-link"><a href="edit/{{this.id}}">edit</a></span>
+                    <span class="entry-link"><a class="delete-button" id="{{this.id}}" href="admin/{{this.id}}">delete</a></span>
+                </ul>
+            </li>
+        {{/each}}
+    </ul>
+</main>
+<script src="/js/delete.js" defer></script>

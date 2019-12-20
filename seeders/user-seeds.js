@@ -2,10 +2,11 @@
 const mongoose = require("mongoose");
 const fs = require('fs');
 const moment = require('moment');
+const path = require('path');
 const faker = require('faker');
 mongoose.connect('mongodb://localhost/guest', { useNewUrlParser: true });
-const userList = 'users.txt';
-const adminList = 'admin.txt';
+const userList = path.join(__dirname, 'users.txt');
+const adminList = path.join(__dirname, 'admin.txt');
 // const fileWrite = './users-copy.csv';
 
 const User = require('../models/user');
