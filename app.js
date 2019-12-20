@@ -1,19 +1,38 @@
 const createError = require('http-errors');
 const express = require('express');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index');
-const entriesRouter = require('./routes/entries');
+const moderatorRouter = require('./routes/moderator');
+const guestRouter = require('./routes/moderator')
+
 
 const app = express();
 
 
 // Подключаем mongoose.
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/broccoli', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/guest', { useNewUrlParser: true });
+
+const fileStoreOptions = {};
+app.use(cookieParser());
+app.use(
+  session({
+    store: new FileStore(fileStoreOptions),
+    key: "user_sid",
+    secret: "anything here",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000
+    }
+  })
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,7 +57,10 @@ app.use(methodOverride(function (req, res) {
 }));
 
 app.use('/', indexRouter);
-app.use('/entries', entriesRouter);
+app.use('/moderator', moderatorRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

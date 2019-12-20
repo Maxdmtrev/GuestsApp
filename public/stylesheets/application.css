@@ -11,9 +11,10 @@
 /* element styling */
 html {
   height: 100%;
-  background-color: #32bb7d;
-  background: url(../images/diamond-bg.jpg);
-  background-attachment: fixed;
+  /*background-color: #32bb7d;*/
+  background: url(../images/foto.jpeg) no-repeat center center fixed;
+  background-size: cover;
+  /*background-attachment: fixed;*/
   line-height: 1.4;
 }
 
@@ -80,6 +81,25 @@ input[type=text], input[type=password], textarea {
     background-color: #6ec7a5;
   }
 
+  .block-button-moderator {
+    border: solid 1px white;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .block-button-add-guest {
+    display: flex;
+    justify-content: center;
+  }
+
+.btn-primary {
+  margin-top: 15px;
+  border-radius: 10px;
+  background-color: black;
+  padding: 5px;
+  width: 170px;
+}
+
 .c-dk-green {
   color: #05724f;
 }
@@ -106,6 +126,38 @@ input[type=text], input[type=password], textarea {
 
 .col-3 {
   width: 33.33%;
+}
+
+.container-row h1 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.container-login-wrapper form{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+input {
+  border: 2px solid white;
+  border-radius: 10px;
+  height: 30px;
+}
+
+.form-inline {
+  padding-left: 250px;
+  width: 50px;
+}
+
+.form-inline label {
+  padding-left: 50px;
+}
+
+.form-inline button {
+  /*padding-left: 50px;*/
 }
 
 .font-2 {
@@ -217,7 +269,7 @@ input[type=text], input[type=password], textarea {
 }
 
 .pad-b-8 {
-  padding-bottom: 8em;
+  padding-bottom: 5em;
 }
 
 .pad-s-1 {
@@ -230,7 +282,7 @@ input[type=text], input[type=password], textarea {
 }
 
 .pad-t-2 {
-  padding-top: 2em;
+  padding-top: 5em;
 }
 
 .pipe-separate {

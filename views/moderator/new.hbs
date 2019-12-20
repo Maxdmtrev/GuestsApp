@@ -1,0 +1,27 @@
+<h1 class="big">Add a Guest</h1>
+
+{{#if error}}
+<section class="errors">
+    <p>{{error}}</p>
+</section>
+{{/if}}
+
+
+<form id="new-user-form" class="flex flex-row" method="post" action="/moderator/admin/new">
+    <label class="input-group col-1-3">
+        <span class="input-group-label">First Name:</span>
+    <input id="user-first-name" class="input-group-input" type="text" name="first_name" >
+</label><br>
+
+<label class="input-group col-1-3">
+    <span class="input-group-label">Last Name:</span>
+    <input id="user-last-name" class="input-group-input" type="text" name="last_name" >
+</label><br>
+
+<label class="input-group col-1-3">
+    <span class="input-group-label">Date</span>
+    <input id="user-date" class="input-group-input" type="text" name="date" >
+</label><br>
+
+<button id="new-user" type="submit" class="button dark">Submit</button>
+    </form>
