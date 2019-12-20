@@ -10,7 +10,7 @@ router.get('/', async function (req, res, next) {
   const moderator = req.session.moderator;
   const guest = await User.find({});
   // console.log(guest);
-  res.render('moderator/moderatorlist',{guest, moderator});
+  res.render('moderator/guestlist',{guest, moderator});
 });
 
 
@@ -94,14 +94,14 @@ router.post('/new', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  const moderator = req.session.moderator;
+  // const moderator = req.session.moderator;
   const modername = req.body.findname;
   const guest = await User.find({first_name: modername});
   // console.log(findguest);
-  res.render('moderator/moderatorlist',{guest, moderator});
+  res.render('moderator/guestlist',{guest});
 });
 
-router.get('/:value', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   const moder = await User.updateOne({_id: req.params.id}, {$set: {status: true}});
   console.log(moder);
   res.redirect('/moderator');

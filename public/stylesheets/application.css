@@ -102,10 +102,11 @@ input[type=text], input[type=password], textarea {
 
 /* Button find */
 
+
 .btn-wrap{
   position: relative;
   margin-top: 40px;
-  margin-left: 230px;
+  margin-left: 250px;
   /*display: flex;*/
   /*justify-content: center;*/
   transform: translate(-50%, -50%);
@@ -240,9 +241,46 @@ input {
   text-decoration: underline;
 }
 
-.guest-row {
+.entries ol {
+  display: -webkit-flex;
+  /*-webkit-flex-direction: row-reverse;*/
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  /*justify-content: center;*/
+}
+
+.guest-row {
+  display: -webkit-flex;
+  /*-webkit-flex-direction: row-reverse;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+}
+
+.guest-row .first-name {
+  /*display: -webkit-flex;*/
+  /*!*-webkit-flex-direction: row-reverse;*!*/
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*justify-content: center;*/
+  /*margin-right: 100px;*/
+
+}
+
+.guest-row .last-name {
+  /*display: -webkit-flex;*/
+  /*!*-webkit-flex-direction: row-reverse;*!*/
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*justify-content: center;*/
+  margin-left: 50px;
+  margin-right: 50px;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
 }
 
 .mar-b-1 {
