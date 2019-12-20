@@ -4,6 +4,14 @@ const Admin = require('../models/admin');
 const User = require('../models/user');
 // console.log('started entries');
 
+// Ручка для получения списка гостей
+router.get('/', async function (req, res, next) {
+  const moderator = req.session.moderator;
+  const guest = await User.find({});
+  // console.log(guest);
+  res.render('moderator/guestlist',{guest, moderator});
+});
+
 router.get('/admin', async function (req, res, next) {
   const moderator = req.session.moderator;
   const guest = await User.find({});
@@ -138,6 +146,19 @@ router.get('/admin/delete/:id', async function (req, res, next) {
   const moderators = await Admin.find({rules:false});
   res.render('moderator/admin',{guest,moderators, moderator});
 
+});
+router.post('/', async (req, res, next) => {
+  // const moderator = req.session.moderator;
+  const modername = req.body.findname;
+  const guest = await User.find({first_name: modername});
+  // console.log(findguest);
+  res.render('moderator/guestlist',{guest});
+});
+
+router.get('/:id', async (req, res, next) => {
+  const moder = await User.updateOne({_id: req.params.id}, {$set: {status: true}});
+  console.log(moder);
+  res.redirect('/moderator');
 });
 
 // router.route('/admin/:id')
