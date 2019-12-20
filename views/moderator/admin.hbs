@@ -1,3 +1,4 @@
+
 <div class="container-row">
     <h1>Hi, {{moderator.login}} ! Welcome to your Guest List !!!</h1>
 </div>
@@ -24,6 +25,7 @@
 <div class="block-button-add-guest">
     <a href="/moderator/newGuest" class="block-button-moderator">Add Guest</a>
 </div>
+
 <main role="main">
     <ul class="entries">
         {{#each guest}}
@@ -38,10 +40,17 @@
 
                 {{/if}}
                 <ul class="entry-links">
-                    <span class="entry-link"><a href="status/{{this.id}}">isCome</a></span>
-                    <span class="entry-link"><a class="delete-button" id="{{this.id}}" href="moderator/{{this.id}}">delete</a></span>
+                    <span class="entry-link"><a href="entries/{{this.id}}">details</a></span>
+                    <span class="entry-link"><a href="edit/{{this.id}}">edit</a></span>
+                    <span class="entry-link"><a class="delete-button" id="{{this.id}}" href="admin/{{this.id}}">delete</a></span>
+
                 </ul>
             </li>
         {{/each}}
     </ul>
+
 </main>
+<script src="/js/delete.js" defer></script>
+
+
+
