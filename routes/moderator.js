@@ -4,12 +4,42 @@ const Admin = require('../models/admin');
 const User = require('../models/user');
 // console.log('started entries');
 
-router.get('/', async function (req, res, next) {
+router.get('/admin', async function (req, res, next) {
   const moderator = req.session.moderator;
   const guest = await User.find({});
-  console.log(guest);
-  res.render('moderator/guestlist',{guest, moderator});
+  const moderators = await Admin.find({rules:false});
+  res.render('moderator/admin',{guest,moderators, moderator});
 });
+
+router.get('/delete/:id', async function (req, res, next) {
+  await Admin.deleteOne({ _id: req.params.id });
+  const moderator = req.session.moderator;
+  const guest = await User.find({});
+  const moderators = await Admin.find({rules:false});
+  res.render('moderator/admin',{guest,moderators, moderator});
+});
+
+router.get('/newModerator', async function (req, res, next) {
+   const moderator = req.session.moderator;
+   res.render('moderator/newModerator',{moderator});
+ });
+
+router.post('/newModerator', async function (req, res, next) {
+  const login = req.body.login;
+  const password = req.body.password;
+
+  const newmoderator = new Admin({login: login, password: password, rules: false});
+
+  try {
+    await newmoderator.save();
+    // throw Error('You shall not pass');
+    return res.redirect(`/moderator/admin`);
+  }
+  catch (err) {
+    return res.render('moderator/newModerator', { errors: [err] });
+  }
+});
+
 
 
 router.get('/login', async function (req, res, next) {
@@ -39,19 +69,6 @@ router.post('/login',async (req, res) => {
   }
 });
 
-// router.get("/logout", async (req, res, next) => {
-//   if (req.session.user) {
-//     try {
-//       await req.session.destroy();
-//       res.clearCookie("user_sid");
-//       res.redirect("/moderator/login");
-//     } catch (error) {
-//       next(error);
-//     }
-//   } else {
-//     res.redirect("/moderator/login");
-//   }
-// });
 
 router.get("/logout", async (req, res, next) => {
   if (req.session.moderator) {
