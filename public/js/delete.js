@@ -12,6 +12,7 @@ if (guestDelete !== null) {
                     'Content-Type': 'application/json',
                 }, body: JSON.stringify({
                     id: event.target.id,
+
                 })
             });
 
