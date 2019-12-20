@@ -81,7 +81,8 @@ router.get("/logout", async (req, res, next) => {
             next(error);
         }
     } else {
-        res.redirect("/");
+      res.redirect("/");
+    }
 });
 
 router.get('/new', async (req, res, next) => {
@@ -108,15 +109,6 @@ router.post('/new', async (req, res, next) => {
     }
 });
 
-
-router.route('/admin')
-    .get(async (req, res, next) => {
-        const moderator = req.session.moderator;
-        const guest = await User.find({});
-        return res.render('moderator/admin', { guest, moderator });
-    });
-
-
 router.route('/admin/new')
 
     .get(async (req, res, next) => {
@@ -139,55 +131,28 @@ router.route('/admin/new')
         }
     });
 
-router.route('/admin/:id')
-    .delete(async (req, res, next) => {
-        console.log(1111, req.body);
-        if (req.session.moderator) {
-            let answer = await User.deleteOne({ '_id': req.params.id });
-            console.log("DELETED: ", answer)
-            return res.json({ status: "ok", result: answer })
-        } else {
-           return res.json({status:false})
-        }
-    });
+router.get('/admin/delete/:id', async function (req, res, next) {
+  await User.deleteOne({ _id: req.params.id });
+  const moderator = req.session.moderator;
+  const guest = await User.find({});
+  const moderators = await Admin.find({rules:false});
+  res.render('moderator/admin',{guest,moderators, moderator});
 
+});
 
+// router.route('/admin/:id')
+//   .delete(async (req, res, next) => {
+//     console.log(1111, req.body);
+//     if (await User.deleteOne({ '_id': req.params.id })) {
+//       let answer = await User.deleteOne({ '_id': req.params.id });
+//       console.log("DELETED: ", answer)
+//       return res.json({ status: "ok", result: answer })
+//     } else {
+//       let answer = await Admin.deleteOne({ '_id': req.params.id });
+//       return res.json({status:false})
+//     }
+//   });
 
-
-
-
-
-//new entries
-// router.get('/new', function (req, res, next) {
-//     res.render('entries/new');
-// });
-
-// //detail entry
-// router.get('/:id', async function (req, res, next) {
-//     let entry = await Entry.findById(req.params.id);
-//     res.render('entries/show', { entry });
-// });
-//
-// router.put('/:id', async function (req, res, next) {
-//     let entry = await Entry.findById(req.params.id);
-//
-//     entry.title = req.body.title;
-//     entry.body = req.body.body;
-//     await entry.save();
-//
-//     res.redirect(`/entries/${entry.id}`);
-//
-// });
-//
-// router.delete('/:id', async function (req, res, next) {
-//     await Entry.deleteOne({'_id': req.params.id});
-//     res.redirect('/');
-// });
-//
-// router.get('/:id/edit', async function (req, res, next) {
-//     let entry = await Entry.findById(req.params.id);
-//     res.render('entries/edit', { entry });
-// });
 module.exports = router;
 
 

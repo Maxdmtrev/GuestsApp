@@ -18,12 +18,12 @@
                     <span class="entry-link"><a class="delete-button" id="{{this.id}}" href="/moderator/delete/{{this.id}}">delete</a></span>
                 </ul>
             </li>
-        {{/each}}
+                {{/each}}
     </ul>
 </main>
 
 <div class="block-button-add-guest">
-    <a href="/moderator/newGuest" class="block-button-moderator">Add Guest</a>
+    <a href="/moderator/admin/new" class="block-button-moderator">Add Guest</a>
 </div>
 
 <main role="main">
@@ -42,7 +42,7 @@
                 <ul class="entry-links">
                     <span class="entry-link"><a href="entries/{{this.id}}">details</a></span>
                     <span class="entry-link"><a href="edit/{{this.id}}">edit</a></span>
-                    <span class="entry-link"><a class="delete-button" id="{{this.id}}" href="admin/{{this.id}}">delete</a></span>
+                    <span class="entry-link"><a class="delete-button" id="{{this.id}}" href="/moderator/admin/delete/{{this.id}}">delete</a></span>
 
                 </ul>
             </li>
@@ -50,7 +50,7 @@
     </ul>
 
 </main>
-<script src="/js/delete.js" defer></script>
+<!--<script src="/js/delete.js" defer></script>-->
 
 
 
