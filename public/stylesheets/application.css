@@ -100,6 +100,66 @@ input[type=text], input[type=password], textarea {
   width: 170px;
 }
 
+/* Button find */
+
+.btn-wrap{
+  position: relative;
+  margin-top: 40px;
+  margin-left: 230px;
+  /*display: flex;*/
+  /*justify-content: center;*/
+  transform: translate(-50%, -50%);
+  width: 0px;
+  height: 55px;
+  background: #62d474;
+  /*line-height: 55px;*/
+  /*padding-right: 55px;*/
+  /*border-radius: 5px;*/
+  /*!*box-shadow: 0 0 10px rgba(0,0,0,0.5);*!*/
+  /*transition: all 0.5s ease;*/
+}
+
+/*.btn-input{*/
+/*  border: 0;*/
+/*  background: transparent;*/
+/*  width: 0%;*/
+/*  outline: none;*/
+/*  font-family: sans-serif;*/
+/*  font-size: 18px;*/
+/*  color: #fff;*/
+/*  font-style: italic;*/
+/*  transition: all 0.3s ease;*/
+/*  position: relative;*/
+/*}*/
+
+/*.btn-wrap .fa{*/
+/*  color: #fff;*/
+/*  position: absolute;*/
+/*  right: 17px;*/
+/*  top: 15px;*/
+/*  font-size: 22px;*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*.btn-wrap.active{*/
+/*  width: 250px;*/
+/*  padding-left: 25px;*/
+/*  transition: all 0.5s ease;*/
+/*}*/
+
+/*.btn-input.active{*/
+/*  width: 98%;*/
+/*  padding-left: 5px;*/
+/*  transition: all 0.5s 0.8s ease;*/
+/*}*/
+
+/*input::placeholder {*/
+/*  color: #fff;*/
+/*}*/
+
+
+/* Button find */
+
 .c-dk-green {
   color: #05724f;
 }
@@ -141,6 +201,10 @@ input[type=text], input[type=password], textarea {
   align-items: flex-start;
 }
 
+.checkbox-button {
+  padding-top: 5px;
+}
+
 input {
   border: 2px solid white;
   border-radius: 10px;
@@ -174,6 +238,11 @@ input {
 
 .hover-underline:hover {
   text-decoration: underline;
+}
+
+.guest-row {
+  display: flex;
+  justify-content: space-around;
 }
 
 .mar-b-1 {

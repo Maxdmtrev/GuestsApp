@@ -4,11 +4,13 @@ const Admin = require('../models/admin');
 const User = require('../models/user');
 // console.log('started entries');
 
+
+// Ручка для получения списка гостей
 router.get('/', async function (req, res, next) {
   const moderator = req.session.moderator;
   const guest = await User.find({});
-  console.log(guest);
-  res.render('moderator/guestlist',{guest, moderator});
+  // console.log(guest);
+  res.render('moderator/moderatorlist',{guest, moderator});
 });
 
 
@@ -77,10 +79,10 @@ router.post('/new', async (req, res, next) => {
   const firstName = req.body.first_name;
   const lastName = req.body.last_name;
   const newDate = req.body.date;
-  console.log(req.body);
+  // console.log(req.body);
 
-  const guest = new User({first_name: firstName, last_name: lastName, date: newDate});
-  console.log(guest);
+  const guest = new User({first_name: firstName, last_name: lastName, date: newDate, status: false});
+  // console.log(guest);
   try {
     await guest.save();
     // throw Error('You shall not pass');
@@ -89,6 +91,20 @@ router.post('/new', async (req, res, next) => {
   catch (err) {
     return res.render('moderator/new', { errors: [err] });
   }
+});
+
+router.post('/', async (req, res, next) => {
+  const moderator = req.session.moderator;
+  const modername = req.body.findname;
+  const guest = await User.find({first_name: modername});
+  // console.log(findguest);
+  res.render('moderator/moderatorlist',{guest, moderator});
+});
+
+router.get('/:value', async (req, res, next) => {
+  const moder = await User.updateOne({_id: req.params.id}, {$set: {status: true}});
+  console.log(moder);
+  res.redirect('/moderator');
 });
 
 //new entries

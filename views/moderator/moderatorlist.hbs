@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="/js/findform" defer></script>
+<!--<div class="container-row">-->
+<!--    <h1>Hi, {{moderator.login}} ! Welcome to your Guest List !!!</h1>-->
+<!--</div>-->
+<!--<div class="block-button-add-guest">-->
+<!--    <a href="/moderator/find" class="block-button-moderator">Find Guest</a>-->
+<!--</div>-->
+<div class="btn-wrap">
+    <form method="post" action="/moderator" class="form-find">
+        <input type="text" id="find-input" class="btn-input" placeholder="Find Guest" name="findname">
+    </form>
+<!--    <i class="fa fa-search" aria-hidden="true"></i>-->
+</div>
+<main role="main">
+    <ol class="entries">
+        {{#each guest}}
+            <li class="guest-row" id="{{this.id}}">
+
+                <span class="first-name">{{this.first_name}}</span>
+                <span class="last-name">{{this.last_name}}</span>
+                {{#if this.status}}
+                <span class="status"><a href="/moderator/{{this.id}}">Come</a></span>
+                {{else}}
+                <span class="status"><a href="/moderator/{{this.id}}">No Come</a></span>
+                {{/if}}
+<!--                <ul class="entry-links">-->
+<!--                    <span class="entry-link"><a href="entries/{{this.id}}">details</a></span>-->
+<!--                    <span class="entry-link"><a href="edit/{{this.id}}">edit</a></span>-->
+<!--                    <span class="entry-link"><a class="delete-button" id="{{this.id}}" href="entries/{{this.id}}">delete</a></span>-->
+<!--                </ul>-->
+            </li>
+        {{/each}}
+    </ol>
+</main>
